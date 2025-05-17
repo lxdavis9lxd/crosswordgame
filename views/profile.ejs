@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Profile</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+  <h1>User Profile</h1>
+  <form action="/profile/<%= userProfile.userId %>" method="POST" enctype="multipart/form-data">
+    <div>
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" value="<%= userProfile.firstName %>">
+    </div>
+    <div>
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" value="<%= userProfile.lastName %>">
+    </div>
+    <div>
+      <label for="bio">Bio:</label>
+      <textarea id="bio" name="bio"><%= userProfile.bio %></textarea>
+    </div>
+    <div>
+      <label for="avatar">Profile Picture:</label>
+      <input type="file" id="avatar" name="avatar">
+      <% if (userProfile.avatarUrl) { %>
+        <img src="<%= userProfile.avatarUrl %>" alt="Profile Picture" width="100">
+      <% } %>
+    </div>
+    <button type="submit">Update Profile</button>
+  </form>
+  <% if (errors && errors.length > 0) { %>
+    <ul>
+      <% errors.forEach(function(error) { %>
+        <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+</body>
+</html>

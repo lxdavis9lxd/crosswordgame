@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crossword Puzzle</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/puzzle.css">
+  <script src="/javascripts/puzzle.js" defer></script>
+</head>
+<body>
+  <h1><%= puzzle.title %></h1>
+  <div id="puzzle-container">
+    <table id="puzzle-grid">
+      <% for (let row of puzzle.grid) { %>
+        <tr>
+          <% for (let cell of row) { %>
+            <td>
+              <% if (cell === 0) { %>
+                <input type="text" maxlength="1">
+              <% } else { %>
+                <div class="black-cell"></div>
+              <% } %>
+            </td>
+          <% } %>
+        </tr>
+      <% } %>
+    </table>
+  </div>
+  <div id="clues-container">
+    <h2>Clues</h2>
+    <div id="across-clues">
+      <h3>Across</h3>
+      <ul>
+        <% for (let clue of puzzle.clues.across) { %>
+          <li><%= clue.number %>. <%= clue.text %></li>
+        <% } %>
+      </ul>
+    </div>
+    <div id="down-clues">
+      <h3>Down</h3>
+      <ul>
+        <% for (let clue of puzzle.clues.down) { %>
+          <li><%= clue.number %>. <%= clue.text %></li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+  <div id="error-message"></div>
+</body>
+</html>

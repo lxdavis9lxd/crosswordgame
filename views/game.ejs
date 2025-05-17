@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Game</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+  <h1>Current Game</h1>
+  <div id="game-state">
+    <pre><%= JSON.stringify(gameState, null, 2) %></pre>
+  </div>
+  <form action="/game/save" method="POST">
+    <input type="hidden" name="userId" value="<%= userId %>">
+    <input type="hidden" name="levelId" value="<%= levelId %>">
+    <input type="hidden" name="state" value="<%= JSON.stringify(gameState) %>">
+    <button type="submit">Save Game</button>
+  </form>
+  <% if (errors && errors.length > 0) { %>
+    <ul>
+      <% errors.forEach(function(error) { %>
+        <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+</body>
+</html>
